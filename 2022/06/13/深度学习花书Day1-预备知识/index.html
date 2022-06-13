@@ -181,7 +181,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="4">
-<input type="hidden" id="yelog_site_word_count" value="1.9k">
+<input type="hidden" id="yelog_site_word_count" value="2.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -266,7 +266,7 @@
     <nav id="title-list-nav">
         
         <a  class="All 深度学习 "
-           href="/2022/06/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/"
+           href="/2022/06/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6Day1-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/"
            data-tag="深度学习,预备知识,微积分"
            data-author="" >
             <span class="post-title" title="深度学习花书-预备知识">深度学习花书-预备知识</span>
@@ -315,7 +315,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-深度学习花书-预备知识" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-深度学习花书Day1-预备知识" class="article article-type-post" itemscope itemprop="blogPost">
     
         <h1 class="article-title">深度学习花书-预备知识</h1>
     
@@ -346,12 +346,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-06-13 21:18:33'>2022-06-13 21:15</time>
+            Created At : <time class="date" title='Updated At: 2022-06-13 21:23:59'>2022-06-13 21:15</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:515</span>
+        <span>Count:637</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -370,7 +370,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81pandas"><span class="toc-text">1、pandas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="toc-text">微积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E5%8F%8A%E9%87%87%E6%A0%B7"><span class="toc-text">概率及采样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0%E5%87%BA%E5%A4%84%E2%80%94%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B"><span class="toc-text">笔记出处—完整教程</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E3%80%81%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2"><span class="toc-text">0、写在最前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81pandas"><span class="toc-text">1、pandas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="toc-text">微积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E5%8F%8A%E9%87%87%E6%A0%B7"><span class="toc-text">概率及采样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0%E5%87%BA%E5%A4%84%E2%80%94%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B"><span class="toc-text">笔记出处—完整教程</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -386,7 +386,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、pandas"><a href="#1、pandas" class="headerlink" title="1、pandas"></a>1、pandas</h2><pre><code class="Python"># pandas按照位置读取和缺失值的处理
+        <h2 id="0、写在最前面"><a href="#0、写在最前面" class="headerlink" title="0、写在最前面"></a>0、写在最前面</h2><p>​		计划重新学习一下深度学习这本书的内容，我选择的是李沐老师翻译的部分，开源在网站中，可以见文末，计划一个月内学完，并且把不熟悉的部分整理一下，因为之前也是有些基础的，此教程是我在闲暇时间查漏补缺的内容，个人主观性较强，但是学习路线很明确，欢迎大家一起学习~</p>
+<h2 id="1、pandas"><a href="#1、pandas" class="headerlink" title="1、pandas"></a>1、pandas</h2><pre><code class="Python"># pandas按照位置读取和缺失值的处理
 # data.iloc[]  中括号， fillna 缺失值的填充
 inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
 inputs = inputs.fillna(inputs.mean())
