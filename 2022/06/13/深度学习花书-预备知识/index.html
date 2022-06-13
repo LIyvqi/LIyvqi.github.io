@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World(作者自带的，感谢作者，就不删啦) | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hello World(作者自带的，感谢作者，就不删啦) | Hexo">
+  <title>深度学习花书-预备知识 | Hexo</title>
+  <meta name="keywords" content=" 深度学习 , 预备知识 , 微积分 ">
+  <meta name="description" content="深度学习花书-预备知识 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="这是李爱可记录日常笔记的地方，白嫖的Github，咱就多发文字少发图。">
 <meta property="og:type" content="website">
@@ -315,24 +315,43 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-深度学习花书-预备知识" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World(作者自带的，感谢作者，就不删啦)</h1>
+        <h1 class="article-title">深度学习花书-预备知识</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="深度学习">深度学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">深度学习</a>
+            
+            <a class="color5">预备知识</a>
+            
+            <a class="color4">微积分</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-06-12 18:37:21'>2022-06-12 11:12</time>
+            Created At : <time class="date" title='Updated At: 2022-06-13 21:18:33'>2022-06-13 21:15</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:75</span>
+        <span>Count:515</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -351,7 +370,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81pandas"><span class="toc-text">1、pandas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="toc-text">微积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E5%8F%8A%E9%87%87%E6%A0%B7"><span class="toc-text">概率及采样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0%E5%87%BA%E5%A4%84%E2%80%94%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B"><span class="toc-text">笔记出处—完整教程</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -367,19 +386,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+        <h2 id="1、pandas"><a href="#1、pandas" class="headerlink" title="1、pandas"></a>1、pandas</h2><pre><code class="Python"># pandas按照位置读取和缺失值的处理
+# data.iloc[]  中括号， fillna 缺失值的填充
+inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
+inputs = inputs.fillna(inputs.mean())
+inputs = pd.get_dummies(inputs, dummy_na=True)    # get_dummies是自动将文字型转化为数值型
+x.shape    # 没有括号，张量的形状
+A = torch.arange(20, dtype=torch.float32).reshape(5, 4)
+B = A.clone()  # 通过分配新内存，将A的一个副本分配给B
+2+A   #将张量乘以或加上一个标量不会改变张量的形状，其中张量的每个元素都将与标量相加或相乘
+# 在tensor中，是面向对象来进行最大最小值的求解的
+A.sum()
+sum_A = A.sum(axis=1, keepdims=True) #在调用函数来[计算总和或均值时保持轴数不变]会很有用
+# axis=0的时候一般是沿着向下的方法，axis=1的时候沿着横轴的方法
+# 矩阵的向量积
+A.shape, x.shape, torch.mv(A, x) # (torch.Size([5, 4]), torch.Size([4]), tensor([ 12.,  44.,  76., 108., 140.]))
+# 矩阵的乘法
+torch.mm(A, B)
+# torch求二范数和一范数
+torch.norm(u),torch.abs(u).sum()
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+<h2 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h2><pre><code class="Python"># 自动求导求梯度的例子
+import torch
+x = torch.arange(4.0)
+x.requires_grad_(True)# 等价于x=torch.arange(4.0,requires_grad=True)
+x.grad  # 默认值是None
+y = 2 * torch.dot(x, x)
+y.backward()
+x.grad    # tensor([ 0.,  4.,  8., 12.])   
+x.grad == 4 * x   # tensor([True, True, True, True])
+# 在默认情况下，PyTorch会累积梯度，我们需要清除之前的值
+x.grad.zero_()
+y = x.sum()
+y.backward()
+x.grad
+x.grad_zero() #tensor([0., 1., 2., 3.], requires_grad=True)  清理了梯度，回到之前
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+<h2 id="概率及采样"><a href="#概率及采样" class="headerlink" title="概率及采样"></a>概率及采样</h2><pre><code class="Python">from torch.distributions import multinomial
+fair_probs = torch.ones([6]) / 6
+# 将结果存储为32位浮点数以进行除法
+counts = multinomial.Multinomial(1000, fair_probs).sample() 
+#它在索引𝑖i处的值是采样结果中𝑖i出现的次数
+counts / 1000  # 相对频率作为估计值
+# 上述就是按照fair_probs的概率模拟抽样
+import torch
+print(dir(torch.distributions))
+# 查看torch中distributions里面内置的函数
+help(torch.ones)    # 查看具体的用法
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="笔记出处—完整教程"><a href="#笔记出处—完整教程" class="headerlink" title="笔记出处—完整教程"></a>笔记出处—完整教程</h2><p><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_preliminaries/index.html">https://zh.d2l.ai/chapter_preliminaries/index.html</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1279562957@qq.com </span>
