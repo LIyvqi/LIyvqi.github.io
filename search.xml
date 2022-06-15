@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>深度学习花书(3)-多层感知机上</title>
+      <link href="/2022/06/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-3-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8A/"/>
+      <url>/2022/06/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-3-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8A/</url>
+      
+        <content type="html"><![CDATA[<p>多层感知机算是深度神经网络的入门开始，参考资料：<a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/index.html">https://zh.d2l.ai/chapter_multilayer-perceptrons/index.html</a></p><h3 id="0、不熟悉的一些核心代码"><a href="#0、不熟悉的一些核心代码" class="headerlink" title="0、不熟悉的一些核心代码"></a>0、不熟悉的一些核心代码</h3><pre><code class="python"># 清除以前的梯度,代码x.grad.data.zero_()# 设置为可训练的可求导的参数W1 = nn.Parameter(torch.randn(num_inputs, num_hiddens, requires_grad=True) * 0.01)# 通过API实现多层感知机，这算是最简单的深度学习了吧# 导入包import torchfrom torch import nnfrom d2l import torch as d2l# 模型net = nn.Sequential(nn.Flatten(),                    nn.Linear(784, 256),                    nn.ReLU(),                    nn.Linear(256, 10))# 初始化参数                    def init_weights(m):    if type(m) == nn.Linear:        nn.init.normal_(m.weight, std=0.01)net.apply(init_weights)batch_size, lr, num_epochs = 256, 0.1, 10loss = nn.CrossEntropyLoss(reduction=&#39;none&#39;)trainer = torch.optim.SGD(net.parameters(), lr=lr)train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)d2l.train_ch3(net, train_iter, test_iter, loss, num_epochs, trainer)# 为了在取对数时进一步稳定该值，将小于1的值设置为1# torch.clamp()就是把数值的区间限制在给定的区间之间clipped_preds = torch.clamp(net(features), 1, float(&#39;inf&#39;))# pandas处理数据的一段代码# 若无法获得测试数据，则可根据训练数据计算均值和标准差numeric_features = all_features.dtypes[all_features.dtypes != &#39;object&#39;].indexall_features[numeric_features] = all_features[numeric_features].apply(    lambda x: (x - x.mean()) / (x.std()))# 在标准化数据之后，所有均值消失，因此我们可以将缺失值设置为0all_features[numeric_features] = all_features[numeric_features].fillna(0)</code></pre><p><code>DataFrame</code> 有一个方便的 <code>dtypes</code> 属性用于返回一个包含每个列的数据类型的序列，</p><p><em>训练误差</em>（training error）是指， 模型在训练数据集上计算得到的误差。 <em>泛化误差</em>（generalization error）是指， 模型应用在同样从原始样本的分布中抽取的无限多数据样本时，模型误差的期望。</p><h2 id="1、K折交叉验证"><a href="#1、K折交叉验证" class="headerlink" title="1、K折交叉验证"></a>1、K折交叉验证</h2><p>​当训练数据稀缺时，我们甚至可能无法提供足够的数据来构成一个合适的验证集。 这个问题的一个流行的解决方案是采用<strong>𝐾</strong><em><strong>折交叉验证</strong></em>。 这里，原始训练数据被分成𝐾个不重叠的子集。 然后执行K次模型训练和验证，每次在𝐾−1个子集上进行训练， 并在剩余的一个子集（在该轮中没有用于训练的子集）上进行验证。 最后，<strong>通过对𝐾次实验的结果取平均来估计训练和验证误差</strong>。</p><h2 id="2、过拟合和欠拟合"><a href="#2、过拟合和欠拟合" class="headerlink" title="2、过拟合和欠拟合"></a>2、过拟合和欠拟合</h2><p>判断：</p><p>1、训练误差和验证误差都很严重， 但它们之间仅有一点差距。 如果模型不能降低训练误差，这可能意味着模型过于简单，欠拟合。</p><p>2、训练误差明显低于验证误差时要小心， 这表明严重的<em>过拟合</em>（overfitting），但是最好的预测模型在训练数据上的表现往往比在保留（验证）数据上好得多。 最终，我们通常更关心验证误差。</p><p>解决过拟合的方法：</p><p>1、限制特征的数量（例如拟合时调整阶数）</p><p>2、参数的权重衰减（范数）。使用L2范数的一个原因是它对权重向量的大分量施加了巨大的惩罚。 这使得我们的学习算法偏向于在大量特征上均匀分布权重的模型。 在实践中，这可能使它们对单个变量中的观测误差更为稳定。 相比之下，L1惩罚会导致模型将权重集中在一小部分特征上， 而将其他权重清除为零。 这称为<em>特征选择</em>（feature selection），这可能是其他场景下需要的。</p><p>pytorch中集成了权重衰减的代码</p><p>在实例化优化器时直接通过<code>weight_decay</code>指定weight decay超参数。 默认情况下，PyTorch同时衰减权重和偏移。 这里我们只为权重设置了<code>weight_decay</code>，所以偏置参数𝑏不会衰减。</p><pre><code class="Plain">net = nn.Sequential(nn.Linear(num_inputs, 1))for param in net.parameters():    param.data.normal_()loss = nn.MSELoss(reduction=&#39;none&#39;)num_epochs, lr = 100, 0.003# 偏置参数没有衰减trainer = torch.optim.SGD([    &#123;&quot;params&quot;:net[0].weight,&#39;weight_decay&#39;: wd&#125;,    &#123;&quot;params&quot;:net[0].bias&#125;], lr=lr)</code></pre><h2 id="3、Dropout"><a href="#3、Dropout" class="headerlink" title="3、Dropout"></a>3、Dropout</h2><pre><code class="Python">实现dropout的两行核心代码，X是输入的特征mask = (torch.rand(X.shape) &gt; dropout).float()  # 直接在每一个位置都转为了0或1return mask * X / (1.0 - dropout)在torch中是有集成的torch.nn.Dropout(0.3)</code></pre><h2 id="4、梯度消失和梯度爆炸"><a href="#4、梯度消失和梯度爆炸" class="headerlink" title="4、梯度消失和梯度爆炸"></a>4、梯度消失和梯度爆炸</h2><p>​不稳定梯度带来的风险不止在于数值表示； 不稳定梯度也威胁到我们优化算法的稳定性。 我们可能面临一些问题。 要么是<em>梯度爆炸</em>（gradient exploding）问题： 参数更新过大，破坏了模型的稳定收敛； 要么是<em>梯度消失</em>（gradient vanishing）问题： 参数更新过小，在每次更新时几乎不会移动，导致模型无法学习。</p><p>Sigmoid激活函数经常会遇到梯度消失的问题，如下，所以现在默认选择 relu激活函数</p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/202206152248418.png" alt="img" style="zoom:50%;" /><ul><li><p><strong>在模型的训练和设计中要打破对称性</strong>，在前向传播期间，两个隐藏单元采用相同的输入和参数， 产生相同的激活，该激活被送到输出单元。 在反向传播期间，根据参数𝐖(1)对输出单元进行微分， 得到一个梯度，其元素都取相同的值。 因此，在基于梯度的迭代（例如，小批量随机梯度下降）之后， 𝐖(1)的所有元素仍然采用相同的值。 这样的迭代永远不会打破对称性，我们可能永远也无法实现网络的表达能力。虽然小批量随机梯度下降不会打破这种对称性，但暂退法正则化可以。</p></li><li><ul><li>解决上述问题最重要的途径就是参数初始化：</li></ul></li></ul><p>默认初始化：不指定初始化方法， 框架将使用默认的随机初始化方法，对于中等难度的问题，这种方法通常很有效。</p><p>Xavier初始化是在“不存在非线性”的假设中推导出来的，但是实践中的效果非常好。对于每一层，输出的方差不受输入数量的影响，任何梯度的方差不受输出数量的影响。</p><p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/202206152248441.png" alt="img"></p><p>python中assert的使用： </p><pre><code class="Python">import sysassert (&#39;linux&#39; in sys.platform), &quot;该代码只能在 Linux 下执行&quot;# 如果assert后面的为True，下面的代码正常执行，如果不是，触发异常并抛出# 接下来要执行的代码</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多层感知机 </tag>
+            
+            <tag> 过（欠）拟合 </tag>
+            
+            <tag> 梯度消失和爆炸 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>深度学习花书(2)-逻辑回归</title>
       <link href="/2022/06/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-2-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
       <url>/2022/06/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-2-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
