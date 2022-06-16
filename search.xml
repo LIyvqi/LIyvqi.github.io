@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>深度学习花书（4）-多层感知机下</title>
+      <link href="/2022/06/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6%EF%BC%884%EF%BC%89-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8B/"/>
+      <url>/2022/06/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6%EF%BC%884%EF%BC%89-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8B/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/kaggle-house-price.html">https://zh.d2l.ai/chapter_multilayer-perceptrons/kaggle-house-price.html</a></p><p>这是天池竞赛的放假预测的实例，一个广泛的用于练手的项目，数据集处理占了大头😂，参考的链接见上，下面是详细的代码。</p><pre><code class="python">import hashlibimport osimport tarfileimport zipfileimport requests#@saveDATA_HUB = dict()DATA_URL = &#39;http://d2l-data.s3-accelerate.amazonaws.com/&#39;def download(name, cache_dir = os.path.join(&#39;..&#39;, &#39;data&#39;)):    &quot;&quot;&quot;下载一个DATA_HUB中的文件，返回本地文件名&quot;&quot;&quot;    assert name in DATA_HUB, f&quot;&#123;name&#125; 不存在于 &#123;DATA_HUB&#125;&quot;    url, sha1_hash = DATA_HUB[name]    os.makedirs(cache_dir, exist_ok=True)    fname = os.path.join(cache_dir, url.split(&#39;/&#39;)[-1])    if os.path.exists(fname):        sha1 = hashlib.sha1()        with open(fname, &#39;rb&#39;) as f:            while True:                data = f.read(1048576)                if not data:                    break                sha1.update(data)        if sha1.hexdigest() == sha1_hash:            return fname  # 命中缓存    print(f&#39;正在从&#123;url&#125;下载&#123;fname&#125;...&#39;)    r = requests.get(url, stream=True, verify=True)    with open(fname, &#39;wb&#39;) as f:        f.write(r.content)    return fname# 下面还有实现两个函数，一个将下载并解压缩一个zip或tar文件，# 另一个是将本书中使用的所有数据集从DATA_HUB下载到缓存目录中。def download_extract(name, folder=None):  #@save    &quot;&quot;&quot;下载并解压zip/tar文件&quot;&quot;&quot;    fname = download(name)    base_dir = os.path.dirname(fname)    data_dir, ext = os.path.splitext(fname)    if ext == &#39;.zip&#39;:        fp = zipfile.ZipFile(fname, &#39;r&#39;)    elif ext in (&#39;.tar&#39;, &#39;.gz&#39;):        fp = tarfile.open(fname, &#39;r&#39;)    else:        assert False, &#39;只有zip/tar文件可以被解压缩&#39;    fp.extractall(base_dir)    return os.path.join(base_dir, folder) if folder else data_dirdef download_all():  #@save    &quot;&quot;&quot;下载DATA_HUB中的所有文件&quot;&quot;&quot;    for name in DATA_HUB:        download(name)%matplotlib inlineimport numpy as npimport pandas as pdimport torchfrom torch import nnfrom d2l import torch as d2l# 下载并缓存数据集DATA_HUB[&#39;kaggle_house_train&#39;] = (  #@save    DATA_URL + &#39;kaggle_house_pred_train.csv&#39;,    &#39;585e9cc93e70b39160e7921475f9bcd7d31219ce&#39;)DATA_HUB[&#39;kaggle_house_test&#39;] = (  #@save    DATA_URL + &#39;kaggle_house_pred_test.csv&#39;,    &#39;fa19780a7b011d9b009e8bff8e99922a8ee2eb90&#39;)train_data = pd.read_csv(download(&#39;kaggle_house_train&#39;))test_data = pd.read_csv(download(&#39;kaggle_house_test&#39;))# 上述是完成了数据的加载，核心的模型部分是下面# (在每个样本中，第一个特征是ID，) 这有助于模型识别每个训练样本。 虽然这很方便，但它不携带任何用于预测的信息。 因此，# 在将数据提供给模型之前，(我们将其从数据集中删除)。all_features = pd.concat((train_data.iloc[:, 1:-1], test_data.iloc[:, 1:]))# 若无法获得测试数据，则可根据训练数据计算均值和标准差numeric_features = all_features.dtypes[all_features.dtypes != &#39;object&#39;].indexall_features[numeric_features] = all_features[numeric_features].apply(    lambda x: (x - x.mean()) / (x.std()))# 在标准化数据之后，所有均值消失，因此我们可以将缺失值设置为0all_features[numeric_features] = all_features[numeric_features].fillna(0)# “Dummy_na=True”将“na”（缺失值）视为有效的特征值，并为其创建指示符特征all_features = pd.get_dummies(all_features, dummy_na=True)  # 离散值使用独热编码all_features.shape</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多层感知机 </tag>
+            
+            <tag> 房价预测 </tag>
+            
+            <tag> kaggle实例 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>深度学习花书(3)-多层感知机上</title>
       <link href="/2022/06/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-3-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8A/"/>
       <url>/2022/06/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%8A%B1%E4%B9%A6-3-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8A/</url>

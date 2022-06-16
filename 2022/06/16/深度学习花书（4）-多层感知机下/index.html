@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>深度学习花书（4）-多层感知机下 | Hexo</title>
+  <meta name="keywords" content=" 多层感知机 , 房价预测 , kaggle实例 ">
+  <meta name="description" content="深度学习花书（4）-多层感知机下 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="这是李爱可记录日常笔记的地方，白嫖的Github，咱就多发文字少发图。">
 <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -387,12 +387,64 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-深度学习花书（4）-多层感知机下" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E9%A6%96%E9%A1%B5"><span class="toc-text">我的首页</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9D%8E%E7%88%B1%E5%8F%AF"><span class="toc-text">关于李爱可</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E9%B8%A3%E8%B0%A2"><span class="toc-text">最后鸣谢</span></a></li></ol></li></ol>
+        <h1 class="article-title">深度学习花书（4）-多层感知机下</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="深度学习">深度学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">多层感知机</a>
+            
+            <a class="color5">房价预测</a>
+            
+            <a class="color4">kaggle实例</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-06-16 21:48:53'>2022-06-16 21:40</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:691</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        
     
 <style>
     .left-col .switch-btn,
@@ -405,38 +457,119 @@
     }
 </style>
 </div>
-            <h1 id="我的首页"><a href="#我的首页" class="headerlink" title="我的首页"></a>我的首页</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/image-20220612234143877.png" alt="李爱可和他的女人"></p>
-<p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<h2 id="关于李爱可"><a href="#关于李爱可" class="headerlink" title="关于李爱可"></a>关于李爱可</h2><p><strong>李爱可</strong> 是废物码农（李爱可）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>使用的叶落阁大神开源的主题模板，下方可以进入大神的网站。</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
-<h2 id="最后鸣谢"><a href="#最后鸣谢" class="headerlink" title="最后鸣谢"></a>最后鸣谢</h2><p>本网站由  <strong><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">又拍云</a></strong>   提供服务</p>
-<p><a href ="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/image-20220612234430140.png"></a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_multilayer-perceptrons/kaggle-house-price.html">https://zh.d2l.ai/chapter_multilayer-perceptrons/kaggle-house-price.html</a></p>
+<p>这是天池竞赛的放假预测的实例，一个广泛的用于练手的项目，数据集处理占了大头😂，参考的链接见上，下面是详细的代码。</p>
+<pre><code class="python">import hashlib
+import os
+import tarfile
+import zipfile
+import requests
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+#@save
+DATA_HUB = dict()
+DATA_URL = &#39;http://d2l-data.s3-accelerate.amazonaws.com/&#39;
+
+
+def download(name, cache_dir = os.path.join(&#39;..&#39;, &#39;data&#39;)):
+    &quot;&quot;&quot;下载一个DATA_HUB中的文件，返回本地文件名&quot;&quot;&quot;
+    assert name in DATA_HUB, f&quot;&#123;name&#125; 不存在于 &#123;DATA_HUB&#125;&quot;
+    url, sha1_hash = DATA_HUB[name]
+    os.makedirs(cache_dir, exist_ok=True)
+    fname = os.path.join(cache_dir, url.split(&#39;/&#39;)[-1])
+    if os.path.exists(fname):
+        sha1 = hashlib.sha1()
+        with open(fname, &#39;rb&#39;) as f:
+            while True:
+                data = f.read(1048576)
+                if not data:
+                    break
+                sha1.update(data)
+        if sha1.hexdigest() == sha1_hash:
+            return fname  # 命中缓存
+    print(f&#39;正在从&#123;url&#125;下载&#123;fname&#125;...&#39;)
+    r = requests.get(url, stream=True, verify=True)
+    with open(fname, &#39;wb&#39;) as f:
+        f.write(r.content)
+    return fname
+
+# 下面还有实现两个函数，一个将下载并解压缩一个zip或tar文件，
+# 另一个是将本书中使用的所有数据集从DATA_HUB下载到缓存目录中。
+def download_extract(name, folder=None):  #@save
+    &quot;&quot;&quot;下载并解压zip/tar文件&quot;&quot;&quot;
+    fname = download(name)
+    base_dir = os.path.dirname(fname)
+    data_dir, ext = os.path.splitext(fname)
+    if ext == &#39;.zip&#39;:
+        fp = zipfile.ZipFile(fname, &#39;r&#39;)
+    elif ext in (&#39;.tar&#39;, &#39;.gz&#39;):
+        fp = tarfile.open(fname, &#39;r&#39;)
+    else:
+        assert False, &#39;只有zip/tar文件可以被解压缩&#39;
+    fp.extractall(base_dir)
+    return os.path.join(base_dir, folder) if folder else data_dir
+
+def download_all():  #@save
+    &quot;&quot;&quot;下载DATA_HUB中的所有文件&quot;&quot;&quot;
+    for name in DATA_HUB:
+        download(name)
+
+%matplotlib inline
+import numpy as np
+import pandas as pd
+import torch
+from torch import nn
+from d2l import torch as d2l
+
+# 下载并缓存数据集
+DATA_HUB[&#39;kaggle_house_train&#39;] = (  #@save
+    DATA_URL + &#39;kaggle_house_pred_train.csv&#39;,
+    &#39;585e9cc93e70b39160e7921475f9bcd7d31219ce&#39;)
+
+DATA_HUB[&#39;kaggle_house_test&#39;] = (  #@save
+    DATA_URL + &#39;kaggle_house_pred_test.csv&#39;,
+    &#39;fa19780a7b011d9b009e8bff8e99922a8ee2eb90&#39;)
+
+train_data = pd.read_csv(download(&#39;kaggle_house_train&#39;))
+test_data = pd.read_csv(download(&#39;kaggle_house_test&#39;))
+# 上述是完成了数据的加载，核心的模型部分是下面
+
+# (在每个样本中，第一个特征是ID，) 这有助于模型识别每个训练样本。 虽然这很方便，但它不携带任何用于预测的信息。 因此，
+# 在将数据提供给模型之前，(我们将其从数据集中删除)。
+all_features = pd.concat((train_data.iloc[:, 1:-1], test_data.iloc[:, 1:]))
+# 若无法获得测试数据，则可根据训练数据计算均值和标准差
+numeric_features = all_features.dtypes[all_features.dtypes != &#39;object&#39;].index
+all_features[numeric_features] = all_features[numeric_features].apply(
+    lambda x: (x - x.mean()) / (x.std()))
+# 在标准化数据之后，所有均值消失，因此我们可以将缺失值设置为0
+all_features[numeric_features] = all_features[numeric_features].fillna(0)
+# “Dummy_na=True”将“na”（缺失值）视为有效的特征值，并为其创建指示符特征
+all_features = pd.get_dummies(all_features, dummy_na=True)  # 离散值使用独热编码
+all_features.shape
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1279562957@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -445,11 +578,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
