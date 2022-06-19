@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World(作者自带的，感谢作者，就不删啦) | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hello World(作者自带的，感谢作者，就不删啦) | Hexo">
+  <title>深度学习花书(6)-卷积神经网络 | Hexo</title>
+  <meta name="keywords" content=" 卷积神经网络 ">
+  <meta name="description" content="深度学习花书(6)-卷积神经网络 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="卷积神经网络本节介绍构成所有卷积网络主干的基本元素。 这包括卷积层本身、填充（padding）和步幅（stride）的基本细节、用于在相邻区域汇聚信息的汇聚层（pooling）、在每一层中多通道（channel）的使用，以及有关现代卷积网络架构的仔细讨论。 https:&#x2F;&#x2F;zh.d2l.ai&#x2F;chapter_convolutional-neural-networks&#x2F;index.html 5.1、">
 <meta property="og:type" content="article">
@@ -434,24 +434,39 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-深度学习花书-6-卷积神经网络" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World(作者自带的，感谢作者，就不删啦)</h1>
+        <h1 class="article-title">深度学习花书(6)-卷积神经网络</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="深度学习">深度学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">卷积神经网络</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-06-12 18:37:21'>2022-06-12 11:12</time>
+            Created At : <time class="date" title='Updated At: 2022-06-19 21:43:43'>2022-06-19 21:36</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:75</span>
+        <span>Count:3.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -470,7 +485,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E3%80%81%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2%EF%BC%8C%E4%B8%8D%E7%86%9F%E6%82%89%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">5.1、写在最前面，不熟悉的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E3%80%81%E5%8D%B7%E7%A7%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">5.2、卷积介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E3%80%81%E5%A4%9A%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%80%9A%E9%81%93"><span class="toc-text">5.3、多输入输出通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E3%80%81Pooling"><span class="toc-text">5.4、Pooling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E3%80%81%E5%AE%9E%E6%88%98%E4%BE%8B%E5%AD%90%E2%80%94%E2%80%94LeNet"><span class="toc-text">5.5、实战例子——LeNet</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -486,19 +501,259 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+        <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>本节介绍构成所有卷积网络主干的基本元素。 这包括卷积层本身、填充（padding）和步幅（stride）的基本细节、用于在相邻区域汇聚信息的汇聚层（pooling）、在每一层中多通道（channel）的使用，以及有关现代卷积网络架构的仔细讨论。</p>
+<p><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_convolutional-neural-networks/index.html">https://zh.d2l.ai/chapter_convolutional-neural-networks/index.html</a></p>
+<h3 id="5-1、写在最前面，不熟悉的代码"><a href="#5-1、写在最前面，不熟悉的代码" class="headerlink" title="5.1、写在最前面，不熟悉的代码"></a>5.1、写在最前面，不熟悉的代码</h3><p>要学会调用卷积层和池化层，也要自己会写卷积层和池化层。</p>
+<pre><code class="python">nn.Conv2d()
+in_channels：输入的通道数目 【必选】
+out_channels： 输出的通道数目 【必选】
+kernel_size：卷积核的大小，类型为int 或者元组，当卷积是方形的时候，只需要一个整数边长即可，卷积不是方形，要输入一个元组表示 高和宽。【必选】
+stride： 卷积每次滑动的步长为多少，默认是 1 【可选】
+padding： 设置在所有边界增加 值为 0 的边距的大小（也就是在feature map 外围增加几圈 0 ），例如当 padding =1 的时候，如果原来大小为 3 × 3 ，那么之后的大小为 5 × 5 。即在外围加了一圈 0 。【可选】
+参数的详解出自：https://blog.csdn.net/qq_38863413/article/details/104108808
+
+conv2d = nn.Conv2d(1, 1, kernel_size=(5, 3), padding=(2, 1))
+comp_conv2d(conv2d, X).shape
+
+conv2d = nn.Conv2d(1, 1, kernel_size=(3, 5), padding=(0, 1), stride=(3, 4))
+comp_conv2d(conv2d, X).shape
+# 不光填充可以高度和宽度不一样，步幅也可以高度和宽度不一样
+# 元组里面先高度后宽度
+
+torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
+
+kernel_size(int or tuple) ：max pooling的窗口大小
+stride(int or tuple, optional)：max pooling的窗口移动的步长。默认值是kernel_size
+padding(int or tuple, optional) ：输入的每一条边补充0的层数
+dilation(int or tuple, optional)：一个控制窗口中元素步幅的参数
+return_indices ：如果等于True，会返回输出最大值的序号，对于上采样操作会有帮助
+ceil_mode ：如果等于True，计算输出信号大小的时候，会使用向上取整，代替默认的向下取整的
+
+# 打印每一层的形状
+for layer in net:
+    X = layer(X)  # 调用网络中的每一层，计算
+    print(layer.__class__.__name__,&#39;output shape: \t&#39;,X.shape)
+    
+# 自己实现一个卷积层(有些面试常问的)
+def corr2d(X, K):  #@save
+    &quot;&quot;&quot;计算二维互相关运算，了解即可，后面直接掉包&quot;&quot;&quot;
+    h, w = K.shape
+    Y = torch.zeros((X.shape[0] - h + 1, X.shape[1] - w + 1))
+    for i in range(Y.shape[0]):
+        for j in range(Y.shape[1]):
+            Y[i, j] = (X[i:i + h, j:j + w] * K).sum()
+    return Y
+# 卷积层对输入和卷积核权重进行互相关运算，并在添加标量偏置之后产生输出。 
+# 所以，卷积层中的两个被训练的参数是卷积核权重和标量偏置。
+class Conv2D(nn.Module):
+    def __init__(self, kernel_size):
+        super().__init__()
+        self.weight = nn.Parameter(torch.rand(kernel_size))
+        self.bias = nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        return corr2d(x, self.weight) + self.bias
+# 高度和宽度分别为ℎh和𝑤w的卷积核可以被称为ℎ×𝑤h×w卷积或ℎ×𝑤h×w卷积核。 
+# 我们也将带有ℎ×𝑤h×w卷积核的卷积层称为ℎ×𝑤h×w卷积层。
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+<h3 id="5-2、卷积介绍"><a href="#5-2、卷积介绍" class="headerlink" title="5.2、卷积介绍"></a>5.2、卷积介绍</h3><p>卷积神经网络正是将<em>空间不变性</em>（spatial invariance）的这一概念系统化，从而基于这个模型使用较少的参数来学习有用的表示。设计适合于计算机视觉的神经网络架构，应具备以下两点：</p>
+<ol>
+<li><p><em>平移不变性</em>（translation invariance）：不管检测对象出现在图像中的哪个位置，神经网络的前面几层应该对相同的图像区域具有相似的反应，即为“平移不变性”。</p>
+</li>
+<li><p><em>局部性</em>（locality）：神经网络的前面几层应该只探索输入图像中的局部区域，而不过度在意图像中相隔较远区域的关系，这就是“局部性”原则。最终，可以聚合这些局部特征，以在整个图像级别进行预测。</p>
+</li>
+</ol>
+<p>严格来说，卷积层是个错误的叫法，因为它所表达的运算其实是<em>互相关运算</em>（cross-correlation），而不是卷积运算。 在卷积层中，输入张量和核张量通过(<strong>互相关运算</strong>)产生输出张量。</p>
+<p>一个卷积核的输出计算：</p>
+<p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/202206192138635.png" alt="img"></p>
+<pre><code class="Python">def corr2d(X, K):  #@save
+    &quot;&quot;&quot;计算二维互相关运算，了解即可，后面直接掉包&quot;&quot;&quot;
+    h, w = K.shape
+    Y = torch.zeros((X.shape[0] - h + 1, X.shape[1] - w + 1))
+    for i in range(Y.shape[0]):
+        for j in range(Y.shape[1]):
+            Y[i, j] = (X[i:i + h, j:j + w] * K).sum()
+    return Y
+# 卷积层对输入和卷积核权重进行互相关运算，并在添加标量偏置之后产生输出。 
+# 所以，卷积层中的两个被训练的参数是卷积核权重和标量偏置。
+class Conv2D(nn.Module):
+    def __init__(self, kernel_size):
+        super().__init__()
+        self.weight = nn.Parameter(torch.rand(kernel_size))
+        self.bias = nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        return corr2d(x, self.weight) + self.bias
+# 高度和宽度分别为ℎh和𝑤w的卷积核可以被称为ℎ×𝑤h×w卷积或ℎ×𝑤h×w卷积核。 
+# 我们也将带有ℎ×𝑤h×w卷积核的卷积层称为ℎ×𝑤h×w卷积层。
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+<p>卷积的填充，因为卷积核是一个小卷积，在卷积的过程中会出现输入的规模减小，我们可以对边缘进行填充来减少这个现象。</p>
+<pre><code class="Python"># 请注意，这里每边都填充了1行或1列，因此总共添加了2行或2列
+conv2d = nn.Conv2d(1, 1, kernel_size=3, padding=1) 
+X = torch.rand(size=(8, 8))
+X = X.reshape((1, 1) + X.shape)  # 这里的（1，1）表示批量大小和通道数都是1
+Y = conv2d(X)
+Y.shape  # torch.Size([1, 1, 8, 8])
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+<p>nn.Conv2d()</p>
+<pre><code class="Plain">in_channels：输入的通道数目 【必选】
+out_channels： 输出的通道数目 【必选】
+kernel_size：卷积核的大小，类型为int 或者元组，当卷积是方形的时候，只需要一个整数边长即可，卷积不是方形，要输入一个元组表示 高和宽。【必选】
+stride： 卷积每次滑动的步长为多少，默认是 1 【可选】
+padding： 设置在所有边界增加 值为 0 的边距的大小（也就是在feature map 外围增加几圈 0 ），例如当 padding =1 的时候，如果原来大小为 3 × 3 ，那么之后的大小为 5 × 5 。即在外围加了一圈 0 。【可选】
+参数的详解出自：https://blog.csdn.net/qq_38863413/article/details/104108808
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>当卷积核的高度和宽度不同时，我们可以[<strong>填充不同的高度和宽度</strong>]，使输出和输入具有相同的高度和宽度。在如下示例中，<strong>我们使用高度为5，宽度为3的卷积核，高度和宽度两边的填充分别为2和1。</strong></p>
+<pre><code class="Python">conv2d = nn.Conv2d(1, 1, kernel_size=(5, 3), padding=(2, 1))
+comp_conv2d(conv2d, X).shape
+
+conv2d = nn.Conv2d(1, 1, kernel_size=(3, 5), padding=(0, 1), stride=(3, 4))
+comp_conv2d(conv2d, X).shape
+# 不光填充可以高度和宽度不一样，步幅也可以高度和宽度不一样
+# 元组里面先高度后宽度
+</code></pre>
+<p>默认情况下，填充为0，步幅为1。在实践中，我们很少使用不一致的步幅或填充</p>
+<h3 id="5-3、多输入输出通道"><a href="#5-3、多输入输出通道" class="headerlink" title="5.3、多输入输出通道"></a>5.3、多输入输出通道</h3><p>当我们添加通道时，我们的输入和隐藏的表示都变成了三维张量。例如，每个RGB输入图像具有3×ℎ×𝑤的形状。我们将这个大小为3的轴称为<em>通道</em>（channel）维度。</p>
+<p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/202206192138290.png" alt="img"> </p>
+<p>多通道计算的实现</p>
+<pre><code class="Python">X = torch.tensor([[[0.0, 1.0, 2.0], [3.0, 4.0, 5.0], [6.0, 7.0, 8.0]],
+               [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]])
+
+def corr2d_multi_in(X, K):
+    # 先遍历“X”和“K”的第0个维度（通道维度），再把它们加在一起
+    return sum(d2l.corr2d(x, k) for x, k in zip(X, K))
+
+def corr2d_multi_in_out(X, K):
+    # 迭代“K”的第0个维度，每次都对输入“X”执行互相关运算。
+    # 最后将所有结果都叠加在一起
+    return torch.stack([corr2d_multi_in(X, k) for k in K], 0)
+
+corr2d_multi_in_out(X, K)
+</code></pre>
+<h3 id="5-4、Pooling"><a href="#5-4、Pooling" class="headerlink" title="5.4、Pooling"></a>5.4、Pooling</h3><p>双重目的：降低卷积层对位置的敏感性，同时降低对空间降采样表示的敏感性。</p>
+<p>不同于卷积层中的输入与卷积核之间的互相关计算，汇聚层不包含参数。 相反，池运算是确定性的，我们通常计算汇聚窗口中所有元素的最大值或平均值。</p>
+<pre><code class="Python"># 了解即可，一个汇聚层的代码
+def pool2d(X, pool_size, mode=&#39;max&#39;):
+    p_h, p_w = pool_size
+    Y = torch.zeros((X.shape[0] - p_h + 1, X.shape[1] - p_w + 1))   # 设置输出的窗口的大小
+    for i in range(Y.shape[0]):
+        for j in range(Y.shape[1]):
+            if mode == &#39;max&#39;:
+                Y[i, j] = X[i: i + p_h, j: j + p_w].max()
+            elif mode == &#39;avg&#39;:
+                Y[i, j] = X[i: i + p_h, j: j + p_w].mean()
+    return Y
+</code></pre>
+<p>torch.nn.MaxPool2d(kernel_size, stride&#x3D;None, padding&#x3D;0, dilation&#x3D;1, return_indices&#x3D;False, ceil_mode&#x3D;False)</p>
+<pre><code class="Plain">kernel_size(int or tuple) ：max pooling的窗口大小
+stride(int or tuple, optional)：max pooling的窗口移动的步长。默认值是kernel_size
+padding(int or tuple, optional) ：输入的每一条边补充0的层数
+dilation(int or tuple, optional)：一个控制窗口中元素步幅的参数
+return_indices ：如果等于True，会返回输出最大值的序号，对于上采样操作会有帮助
+ceil_mode ：如果等于True，计算输出信号大小的时候，会使用向上取整，代替默认的向下取整的
+</code></pre>
+<p>在处理多通道输入数据时，[<strong>汇聚层在每个输入通道上单独运算</strong>]，而不是像卷积层一样在通道上对输入进行汇总。 这意味着汇聚层的输出通道数与输入通道数相同。</p>
+<h3 id="5-5、实战例子——LeNet"><a href="#5-5、实战例子——LeNet" class="headerlink" title="5.5、实战例子——LeNet"></a>5.5、实战例子——LeNet</h3><p><img src="https://raw.githubusercontent.com/LIyvqi/FigOfWeb/main/202206192138564.png" alt="img"></p>
+<p>LeNet的组成部分有两个卷积层和三个全连接层实现，我们在这里直接学习一下如何调用现成的。</p>
+<p>通过下面的LeNet代码，你会相信用深度学习框架实现此类模型非常简单。我们只需要实例化一个<code>Sequential</code>块并将需要的层连接在一起。</p>
+<pre><code class="Python">import torch
+from torch import nn
+from d2l import torch as d2l
+
+net = nn.Sequential(
+    nn.Conv2d(1, 6, kernel_size=5, padding=2), nn.Sigmoid(),
+    nn.AvgPool2d(kernel_size=2, stride=2),
+    nn.Conv2d(6, 16, kernel_size=5), nn.Sigmoid(),
+    nn.AvgPool2d(kernel_size=2, stride=2),
+    nn.Flatten(),
+    nn.Linear(16 * 5 * 5, 120), nn.Sigmoid(),
+    nn.Linear(120, 84), nn.Sigmoid(),
+    nn.Linear(84, 10))
+
+# 为了检查模型，打印每一层的形状
+X = torch.rand(size=(1, 1, 28, 28), dtype=torch.float32)
+for layer in net:
+    X = layer(X)  # 调用网络中的每一层，计算
+    print(layer.__class__.__name__,&#39;output shape: \t&#39;,X.shape)
+
+# 模型的训练
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+def evaluate_accuracy_gpu(net, data_iter, device=None): #@save
+    &quot;&quot;&quot;使用GPU计算模型在数据集上的精度，这一部分其实从学习方法来讲不重要，无所谓&quot;&quot;&quot;
+    if isinstance(net, nn.Module):
+        net.eval()  # 设置为评估模式
+        if not device:
+            device = next(iter(net.parameters())).device
+    # 正确预测的数量，总预测的数量
+    metric = d2l.Accumulator(2)
+    with torch.no_grad():
+        for X, y in data_iter:
+            if isinstance(X, list):
+                # BERT微调所需的（之后将介绍）
+                X = [x.to(device) for x in X]
+            else:
+                X = X.to(device)
+            y = y.to(device)
+            metric.add(d2l.accuracy(net(X), y), y.numel())
+    return metric[0] / metric[1]
+
+# 模型的训练部分，也算是重点
+def train_ch6(net, train_iter, test_iter, num_epochs, lr, device):
+    &quot;&quot;&quot;用GPU训练模型(在第六章定义)&quot;&quot;&quot;
+    # 首先是初始化网络的参数
+    def init_weights(m):
+        if type(m) == nn.Linear or type(m) == nn.Conv2d:
+            nn.init.xavier_uniform_(m.weight)
+    net.apply(init_weights)
+    
+    print(&#39;training on&#39;, device)
+    net.to(device)   # 把网络放入设备中
+    
+    optimizer = torch.optim.SGD(net.parameters(), lr=lr)
+    loss = nn.CrossEntropyLoss()
+    # 指定优化器和损失函数
+    
+    animator = d2l.Animator(xlabel=&#39;epoch&#39;, xlim=[1, num_epochs],
+                            legend=[&#39;train loss&#39;, &#39;train acc&#39;, &#39;test acc&#39;])
+    timer, num_batches = d2l.Timer(), len(train_iter)
+    
+    for epoch in range(num_epochs):
+        # 训练损失之和，训练准确率之和，样本数
+        metric = d2l.Accumulator(3)
+        net.train()
+        for i, (X, y) in enumerate(train_iter):
+            timer.start()
+            
+            optimizer.zero_grad()
+            X, y = X.to(device), y.to(device)
+            y_hat = net(X)
+            l = loss(y_hat, y)
+            l.backward()
+            optimizer.step()
+            
+            with torch.no_grad():
+                metric.add(l * X.shape[0], d2l.accuracy(y_hat, y), X.shape[0])
+            timer.stop()
+            train_l = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % (num_batches // 5) == 0 or i == num_batches - 1:
+                animator.add(epoch + (i + 1) / num_batches,
+                             (train_l, train_acc, None))
+        test_acc = evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f&#39;loss &#123;train_l:.3f&#125;, train acc &#123;train_acc:.3f&#125;, &#39;
+          f&#39;test acc &#123;test_acc:.3f&#125;&#39;)
+    print(f&#39;&#123;metric[2] * num_epochs / timer.sum():.1f&#125; examples/sec &#39;
+          f&#39;on &#123;str(device)&#125;&#39;)
+  
+# 了解训练的基本过程就行，因为这个训练的代码集成了很多作者自己写的d2l的库，实际中不多
+# 主要是学习模型部分，代码的训练过程几乎开源的项目都有，找到自己适合的就行
+# 但是，一定要记住的是，在模型的训练中有很多坑，这个要整理好
+lr, num_epochs = 0.9, 10
+train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1279562957@qq.com </span>
